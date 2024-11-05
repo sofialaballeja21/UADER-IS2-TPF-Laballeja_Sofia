@@ -17,7 +17,10 @@ def list_all_logs():
 if __name__ == '__main__':
     logs = list_all_logs()  # Llama a la función y guarda el resultado
     if logs:
-        print(logs)  # Imprime el resultado en formato JSON
+        # Convertir el string JSON de logs a un diccionario Python
+        logs_dict = json.loads(logs)
+        # Imprime los logs en formato JSON, usando custom_encoder para manejar Decimals
+        print(json.dumps(json.loads(logs), default=custom_encoder, indent=4))
     else:
         print("No se encontraron registros en la tabla.")
 
